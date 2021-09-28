@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserScreenComponent } from './user-screen/user-screen.component';
 import { SummaryReportComponent } from './summary-report/summary-report.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SummaryReportComponent } from './summary-report/summary-report.componen
     BrowserModule,
     AppRoutingModule,
     FormsModule,    
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

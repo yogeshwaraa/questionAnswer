@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +9,44 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  "msgs": any = [];
+  "username": String;
+  "loginForm": FormGroup;
+  "isLoggedIn": boolean;
+  "formValidation": boolean = true;
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      userName: ['', [
+        Validators.required
+      ]],
+      password: ['', [
+        Validators.required
+      ]]
+    })
+  }
+  login() {
+    this.msgs = [];
+    if (this.loginForm.valid) {
+      this.userService.userLogin(this.loginForm.value).subscribe({
+        next: (data: any) => {
+          if (data.status) {
+            // this.auth.isLoggedIn = true;
+            // this.auth.setUser(this.loginForm.value.userName);
+            // this.auth.setNotification(data.user.notification)
+            this.router.navigateByUrl('/home')
+          } else {
+            alert(data.message);
+            // this.msgs.push({ severity: 'error', summary: 'Error', detail: data.message })
+            // this.auth.isLoggedIn = false;
+          }
+        }
+      });
+    } else {
+      // this.msgs.push({ severity: 'error', summary: 'Error', detail: "* field are mandatory" })
+      alert("*field are mandatory");
+    }
   }
 
 }
