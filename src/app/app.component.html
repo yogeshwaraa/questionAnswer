@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-sm-7"><h5 style="text-align: right;">Question Master</h5></div>
+    <ul class="col-sm-5 navbar-nav"  style="text-align: right;">
+        <li class="nav-item">
+            <span>{{GetUser}}</span>
+            <a class="nav-link" href="" *ngIf="isLogin()">Logout</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" *ngIf="!isLogin()" routerLink="signup">Signup</a>
+        </li>
+    </ul>
+</div>
+<router-outlet></router-outlet>

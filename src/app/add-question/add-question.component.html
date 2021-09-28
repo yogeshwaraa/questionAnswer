@@ -1,0 +1,84 @@
+<div class="">
+    <form class="form" [formGroup]="qnsForm" (ngSubmit)="onSubmitQns()">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <!-- <button type="button" class="close" (click)="decline()" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button> -->
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width:300px">Question</th>
+                                        <th>Option 1</th>
+                                        <th>Option 2</th>
+                                        <th>Option 3</th>
+                                        <th>Option 4</th>
+                                        <th>Correct Option</th>
+                                        <th style="width:100px">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container formArrayName="questions">
+                                        <tr *ngFor="let question of questions.controls; index as idx">
+                                            <ng-container [formGroupName]="idx">
+                                                <td>
+                                                    <input type="text" class="form-control" formControlName="question">                                                   
+                                                </td>
+                                                <ng-container formArrayName="questionOptions">
+                                                    <td formGroupName="0">
+                                                        <input type="text" class="form-control" formControlName="question">
+                                                        </td>
+                                                    <td formGroupName="1">
+                                                        <input type="text" class="form-control" formControlName="question">
+                                                        </td>
+                                                    <td formGroupName="2">
+                                                        <input type="text" class="form-control"formControlName="question">
+                                                    </td>
+                                                    <td formGroupName="3">
+                                                        <input type="text" class="form-control" formControlName="question">
+                                                    </td>
+                                                </ng-container>
+                                                <td>
+                                                    <select class="form-control" formControlName="correctOption">
+                                                        <option [ngValue]="null">--Select--</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex flex-row">
+                                                        <button type="button" class="btn btn-success mr-3" title="Add"
+                                                            *ngIf="questionsArray.length-1 === idx"
+                                                            (click)="addQuestion()">ADD</button>
+                                                        <button type="button" class="btn btn-danger" title="Delete"
+                                                            (click)="removeQuestion(idx)"
+                                                            *ngIf="idx !== 0">Remove</button>
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer text-right">
+                <!-- <button type="button" (click)="dismiss()" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                <button type="submit" class="btn btn-primary">
+                    Submit</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </form>
+</div>
+<!-- /.modal-dialog -->
