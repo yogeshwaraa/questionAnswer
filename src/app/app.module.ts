@@ -7,13 +7,17 @@ import { AddQuestionComponent } from './add-question/add-question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UserScreenComponent } from './user-screen/user-screen.component';
+import { SummaryReportComponent } from './summary-report/summary-report.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddQuestionComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserScreenComponent,
+    SummaryReportComponent
   ],
   imports: [
     BrowserModule,
