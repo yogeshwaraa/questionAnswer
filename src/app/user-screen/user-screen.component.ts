@@ -10,18 +10,14 @@ import { UserService } from '../user.service';
 export class UserScreenComponent implements OnInit {
 
   public questions: any;
-  public currentIndex: number = 0;
-  public quizFormGroup: FormGroup;
-  public question: string;
-  public option: any;
 
   constructor(private userservice: UserService) { }
 
   ngOnInit(): void {
     this.userservice.getQuestion().subscribe({
       next: (data: any) => {
-        if (data.message > 0) {
-          this.questions
+        if (data.message.length() > 0) {
+          this.questions = data.message
         }
         else {
           alert("no questions added")

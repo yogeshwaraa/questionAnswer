@@ -1,44 +1,4 @@
-<div class="">
-  <form class="form" [formGroup]="quizFormGroup" (ngSubmit)="submitQuiz()">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Test Question</h4>
-        <!-- <button type="button" class="close" (click)="moduleClose(true)" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button> -->
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="badge bg-info mb-3">
-              <span>{{currentIndex+1}}</span>
-              <!-- /<span>{{quizlength}}</span> -->
-            </div>
-            <div class="form-group">
-              <label for="">{{question}}</label>
-              <ng-container>
-                <div class="form-check" *ngFor="let opt of option">
-                  <input class="form-check-input" type="radio" name="ans-{{quizQuestions[currentIndex].question_ID}}"
-                    formControlName="ans-{{quizQuestions[currentIndex].question_ID}}" [value]="opt.question">
-                  <label class="form-check-label">{{opt.question}}</label>
-                </div>
-              </ng-container>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="row">
-            <div class="col-sm-12 d-flex justify-content-between">
-              <button type="button" class="btn btn-default" (click)="previous()" *ngIf="currentIndex>0">Previous</button>
-              <button type="button" class="btn btn-default" (click)="next()" *ngIf="currentIndex<quizlength-1" >Next</button>
-            </div>
-          </div> -->
-      </div>
-      <div class="modal-footer text-right">
-        <!-- <button type="button" class="btn btn-default" data-dismiss="modal" (click)="moduleClose(false)">Close</button> -->
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </form>
+<div >
+  
 </div>
 <!-- /.modal-dialog -->
