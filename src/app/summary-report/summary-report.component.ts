@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-summary-report',
@@ -7,25 +8,56 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./summary-report.component.css']
 })
 export class SummaryReportComponent implements OnInit {
-  title = 'User Test Report';
-  public correctionForm: FormGroup;
-  questionsArray = new FormArray([]);
-  constructor(private fb: FormBuilder) { }
+ 
+  public questions: any;
+  public ansFormGroup: FormGroup;
+  public qnsArray:FormArray;
+
+  constructor(private userservice: UserService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.initializeValuationForm();
-  }
+    this.userservice.getReport().subscribe({
+      next: (data: any) => {
+        console.log(data.details.length);
+        if (data.details.length> 0) {
+          this.questions = data;
+          console.log(this.questions);
+          this.initializeQnsForm();
+        }
+        else {
+          alert("no questions added")
+        }
+      }
+    })
 
-  initializeValuationForm() {
-    this.correctionForm = this.fb.group({
-      questions: this.questionsArray,
+  }
+  private initializeQnsForm() {
+    const setArray=new FormArray([]);
+    this.questions.details.forEach(ele => {
+      const choiceArray = new FormArray([]);
+      ele.answer_options.forEach(element => {
+        const questionChoiceArray1 = new FormGroup({
+          question: new FormControl(element.question, Validators.required)
+        });
+        choiceArray.push(questionChoiceArray1);
+
+      });
+
+      let qns = this.fb.group({
+        questionId: new FormControl(ele.id),
+        questions: new FormControl(ele.question_details),
+        option: choiceArray,
+        selectedOption: new FormControl(parseInt(ele.user_options), Validators.required),
+        crtAns: new FormControl(parseInt(ele.crt_answer))
+      });
+      setArray.push(qns);
+    });
+    this.ansFormGroup = this.fb.group({
+    questionList:setArray
     });
   }
-  get questions() {
-    return this.correctionForm.get('questions') as FormArray;
+  public ques() {
+    return this.ansFormGroup.get('questionList') as FormArray;
   }
-  // public submitCorrection() {
-
-  // }
-
+ 
 }

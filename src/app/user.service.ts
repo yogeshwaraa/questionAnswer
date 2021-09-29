@@ -28,11 +28,12 @@ export class UserService {
     return this.http.get<any>(this.baseUrl + 'get/question/');
   }
 
-  public addQuestio(data:any){
+  public saveAnswer(data:any){
     return this.http.post<any>(this.baseUrl + 'save/question/', data);
   }
 
-  public addQuestin(data:any){
+  public getReport(){
+    let data={user_id:JSON.parse(sessionStorage.getItem('user')).id};
     return this.http.post<any>(this.baseUrl + 'question/details/', data);
   }
 

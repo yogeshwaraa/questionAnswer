@@ -1,4 +1,35 @@
-<div >
-  
-</div>
-<!-- /.modal-dialog -->
+<div>
+    <div class="">
+        <form class="form" [formGroup]="ansFormGroup" (ngSubmit)="submitQuiz()">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Test Question</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="badge bg-info mb-3">
+                            </div>
+                            <div class="form-group">
+                                <div formArrayName="questionList">
+                                    <div *ngFor="let question of ques().controls; let idx = index"
+                                        formGroupName="{{idx}}">
+                                        <h1>{{idx+1}}){{question.value.questions}}</h1>
+                                        <div class="form-check"
+                                            *ngFor="let opt of question.controls['option'].controls; let i= index">
+                                            <input class="form-check-input" type="radio"
+                                                formControlName="selectedOption" [value]="i+1">
+                                            <label class="form-check-label">{{opt.value.question}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-right">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
