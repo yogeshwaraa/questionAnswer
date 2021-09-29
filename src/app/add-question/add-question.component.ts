@@ -1,6 +1,8 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-add-question',
@@ -13,7 +15,7 @@ export class AddQuestionComponent implements OnInit {
   qnsForm: FormGroup;
   questionsArray = new FormArray([]);
 
-  constructor(private fb: FormBuilder,) { }
+  constructor(private fb: FormBuilder, private userservice: UserService) { }
 
   ngOnInit(): void {
     this.initializeQnsForm();
@@ -31,14 +33,29 @@ export class AddQuestionComponent implements OnInit {
   }
 
   onSubmitQns() {
-    if(this.qnsForm.valid){
+    if (this.qnsForm.valid) {
       console.log(this.qnsForm.value);
-    }else{
-      console.log("invalid");
+      let data = {
+        user_id: JSON.parse(sessionStorage.getItem('user')).id,
+        questions: this.qnsForm.value.questions
+      }
+      this.userservice.addQuestion(data).subscribe({
+        next: (data: any) => {
+          if (data.success) {
+            alert(data.message)
+          }
+          else{
+            alert(data.message)
+          }
+        }
+      })
+    }
+    else {
+      alert("invalid!");
     }
   }
 
-  public addQuestion() {      
+  public addQuestion() {
 
     const questionChoiceArray1 = new FormGroup({
       question: new FormControl('', Validators.required)
@@ -62,13 +79,13 @@ export class AddQuestionComponent implements OnInit {
       questionId: new FormControl(null),
       question: new FormControl('', [Validators.required, Validators.maxLength(999)]),
       questionOptions: choiceArray,
-      correctOption:new FormControl(null,Validators.required)
+      correctOption: new FormControl(null, Validators.required)
     });
 
     this.questionsArray.push(question);
   }
 
-  public removeQuestion(index) {   
+  public removeQuestion(index) {
     this.questionsArray.removeAt(index);
   }
 
