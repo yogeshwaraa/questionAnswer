@@ -1,0 +1,49 @@
+{
+    "success": true,
+    "details": [
+        {
+            "question_id": 5,
+            "question_details": "What is the captial of india",
+            "user_options": "1",
+            "status": true,
+            "answer_options": [
+                {
+                    "question": "Chennai"
+                },
+                {
+                    "question": "Delhi"
+                },
+                {
+                    "question": "Patna"
+                },
+                {
+                    "question": "Mumbai"
+                }
+            ],
+            "crt_answer": "1"
+        },
+        {
+            "question_id": 6,
+            "question_details": "What is the captial of tamilnadu",
+            "user_options": "1",
+            "status": false,
+            "answer_options": [
+                {
+                    "question": "Chennai"
+                },
+                {
+                    "question": "Delhi"
+                },
+                {
+                    "question": "Patna"
+                },
+                {
+                    "question": "Mumbai"
+                }
+            ],
+            "crt_answer": "0"
+        }
+    ],
+    "total": 2,
+    "crt_answer": 1
+}
