@@ -17,21 +17,20 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = this.fb.group({
-      userName: ['', [
+      user_type: ['null', [
         Validators.required
       ]],
-      firstName: ['', [
+      first_name: ['', [
         Validators.required
       ]],
-      lastName: [''],
+      last_name: [''],
       password: ['', [
         Validators.required
       ]],
       confirmPassword: ['', [
         Validators.required
       ]],
-      email: ['', [Validators.required, Validators.email]],
-      contactNumber: ['', [Validators.pattern(/^[0-9]{0,9}$/)]]
+      email: ['', [Validators.required, Validators.email]]
     });
   }
   public getFormControl(name: string) {
@@ -51,13 +50,13 @@ export class RegisterComponent implements OnInit {
       this.userService.userRegister(this.signupForm.value).subscribe(
         {
           next: (data: any) => {
-            if (data.status) {
-              this.msgs.push({ severity: 'success', summary: 'Success', detail: data.message })
+            if (data.success) {
+              alert("registed successfully")
               setTimeout(() => {
                 this.router.navigateByUrl('/login');
               }, 2000);
             } else {
-              this.msgs.push({ severity: 'error', summary: 'Error', detail: data.message })
+              alert(data.message)
             }
           }
         });
@@ -66,7 +65,7 @@ export class RegisterComponent implements OnInit {
         // this.msgs.push({ severity: 'error', summary: 'Error', detail: "* fields are required" })
         alert("* Fields Are Required")
       } else {
-        this.msgs.push({ severity: 'error', summary: 'Error', detail: "Password and confirm password are not same" })
+        alert("Password and confirm password are not same")
       }
     }
   }

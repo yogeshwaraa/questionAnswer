@@ -11,11 +11,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   public userLogin(data: any) {
-   return this.http.post<any>(this.baseUrl + 'login', data);
+   return this.http.post<any>(this.baseUrl + 'login/save/', data);
   }
 
   public userRegister(data: any) {
-   return this.http.post<any>(this.baseUrl + 'register', data);
+   return this.http.post<any>(this.baseUrl + 'login/register/', data);
   }
 
 }

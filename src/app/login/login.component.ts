@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      userName: ['', [
+      email: ['', [
         Validators.required
       ]],
       password: ['', [
@@ -31,11 +31,14 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.userService.userLogin(this.loginForm.value).subscribe({
         next: (data: any) => {
-          if (data.status) {
-            // this.auth.isLoggedIn = true;
-            // this.auth.setUser(this.loginForm.value.userName);
-            // this.auth.setNotification(data.user.notification)
-            this.router.navigateByUrl('/home')
+          if (data.success) {
+            sessionStorage.setItem("user",JSON.stringify(data))
+            if (data.user_type == 'Admin'){
+              this.router.navigateByUrl('/addQuestion');
+            }
+            else{
+              this.router.navigateByUrl('/userScreen');
+            }
           } else {
             alert(data.message);
             // this.msgs.push({ severity: 'error', summary: 'Error', detail: data.message })

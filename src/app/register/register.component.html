@@ -6,30 +6,18 @@
     </div>
     <div class="card">
         <div class="container-fluid">
-            <h2 class="text-center"><i class="material-icons text-dark">                    
+            <h2 class="text-center"><i class="material-icons text-dark">
                 </i>Signup</h2>
             <form [formGroup]="signupForm">
                 <div class="form-row">
-                    <div class="form-group col-sm-12 col-lg-6">
-                        <label for="userName"><sup class="text-danger">*</sup>Username</label>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><strong>@</strong></span>
-                            </div>
-                            <input type="text" class="form-control" id="userName" formControlName="userName"
-                                placeholder="Enter Username">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
                         <label for="firstName"><sup class="text-danger">*</sup>First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName" id="firstName"
+                        <input type="text" class="form-control" formControlName="first_name" id="firstName"
                             placeholder="Enter First Name">
                     </div>
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
                         <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" formControlName="lastName" id="lastName"
+                        <input type="text" class="form-control" formControlName="last_name" id="lastName"
                             placeholder="Enter Last Name">
                     </div>
                 </div>
@@ -40,9 +28,12 @@
                             placeholder="Enter Email">
                     </div>
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <label for="contactNumber">Contact Number</label>
-                        <input type="text" class="form-control" formControlName="contactNumber" id="contactNumber"
-                            placeholder="Enter Contact">
+                        <label for="User_type"><sup class="text-danger">*</sup>User_type</label>
+                        <select class="form-control" formControlName="user_type" id="User_type">
+                            <option [ngValue]="null">Select</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Stud">Student</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">

@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "questionAnswer"
+    }
+  },
+  "defaultProject": "questionAnswer",
+  "cli": {
+    "analytics": false
+  }
 }
