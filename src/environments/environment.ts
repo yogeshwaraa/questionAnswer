@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
+<<<<<<< HEAD
   serviceUrl : "http://localhost:8000",
+=======
+  serviceUrl : "http://localhost:8000/login/",
+>>>>>>> 4c950b400bace2a2b78b3a039810abb44652e37c
 };
 
 /*
