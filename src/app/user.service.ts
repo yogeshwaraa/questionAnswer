@@ -28,4 +28,15 @@ export class UserService {
     return this.http.get<any>(this.baseUrl + 'get/question/');
   }
 
+  public addQuestio(data:any){
+    return this.http.post<any>(this.baseUrl + 'save/question/', data);
+  }
+
+  public addQuestin(data:any){
+    return this.http.post<any>(this.baseUrl + 'question/details/', data);
+  }
+
+  
+
+
 }
