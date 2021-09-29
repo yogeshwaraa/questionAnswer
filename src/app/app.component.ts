@@ -6,8 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  GetUser = 'questionAnswer';
+  GetUser="";
   isLogin(){
-    return true;
+    if(sessionStorage.getItem('user')!=undefined){
+      this.GetUser=JSON.parse(sessionStorage.getItem('user')).first_name;
+      return true;
+    }else{
+      return false;
+    }    
+  }
+  logout(){
+    sessionStorage.clear();
   }
 }
