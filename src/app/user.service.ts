@@ -7,15 +7,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
   
-  private baseUrl = environment.serviceUrl + "/";
+  private baseUrl = environment.serviceUrl;
   constructor(private http: HttpClient) { }
 
   public userLogin(data: any) {
-   return this.http.post<any>(this.baseUrl + 'login', data);
+   return this.http.post<any>(this.baseUrl + 'save/', data);
   }
 
   public userRegister(data: any) {
-   return this.http.post<any>(this.baseUrl + 'register', data);
+   return this.http.post<any>(this.baseUrl + 'register/', data);
+  }
+
+  public addQuestion(data:any){
+    return this.http.post<any>(this.baseUrl + 'save/question/', data);
   }
 
 }
