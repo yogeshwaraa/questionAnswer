@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = this.fb.group({
-      user_type: ['null', [
+      user_type: ['', [
         Validators.required
       ]],
       first_name: ['', [
@@ -27,26 +27,23 @@ export class RegisterComponent implements OnInit {
       password: ['', [
         Validators.required
       ]],
-      confirmPassword: ['', [
-        Validators.required
-      ]],
       email: ['', [Validators.required, Validators.email]]
     });
   }
   public getFormControl(name: string) {
     return this.signupForm.get(name);
   }
-  passwordCheck() {
-    if (this.signupForm.value.password != this.signupForm.value.confirmPassword) {
-      return false;
-    } else {
-      return true;
-    }
+  // passwordCheck() {
+  //   if (this.signupForm.value.password != this.signupForm.value.confirmPassword) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
 
-  }
+  // }
   onSubmit() {
     this.msgs=[];
-    if (this.signupForm.valid && this.passwordCheck()) {
+    if (this.signupForm.valid) {
       this.userService.userRegister(this.signupForm.value).subscribe(
         {
           next: (data: any) => {

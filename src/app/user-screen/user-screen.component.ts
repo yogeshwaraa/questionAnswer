@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class UserScreenComponent implements OnInit {
   public ansFormGroup: FormGroup;
   public qnsArray:FormArray;
 
-  constructor(private userservice: UserService, private fb: FormBuilder) { }
+  constructor(private userservice: UserService, private fb: FormBuilder,private router:Router) { }
 
   ngOnInit(): void {
     this.userservice.getQuestion().subscribe({
@@ -68,7 +69,8 @@ export class UserScreenComponent implements OnInit {
       this.userservice.saveAnswer(data).subscribe({
         next: (data: any) => {
           if (data.success) {
-            alert(data.message)
+            alert("Answer saved")
+            this.router.navigateByUrl('/summaryreport');
           }
           else{
             alert(data.message)

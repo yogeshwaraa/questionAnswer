@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: "addQuestion", component: AddQuestionComponent },
   { path: "userScreen", component: UserScreenComponent },
   { path: 'summaryreport', component: SummaryReportComponent},
-  // { path: 'updateTweet', component: AddUpdateTweetComponent},
   { path: "signup", component: RegisterComponent },
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "login", component: LoginComponent }
